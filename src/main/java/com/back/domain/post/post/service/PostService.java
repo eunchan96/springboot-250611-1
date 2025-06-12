@@ -2,15 +2,15 @@ package com.back.domain.post.post.service;
 
 import com.back.domain.post.post.Repository.PostRepository;
 import com.back.domain.post.post.entity.Post;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
 @Component
+@RequiredArgsConstructor
 public class PostService {
-    @Autowired
-    private PostRepository postRepository;
+    private final PostRepository postRepository;
 
     public long count() {
         return postRepository.count();

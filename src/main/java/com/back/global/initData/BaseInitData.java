@@ -2,7 +2,7 @@ package com.back.global.initData;
 
 import com.back.domain.post.post.entity.Post;
 import com.back.domain.post.post.service.PostService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,9 +10,9 @@ import org.springframework.context.annotation.Configuration;
 import java.util.Optional;
 
 @Configuration
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class BaseInitData {
-    private PostService postService;
+    private final PostService postService;
 
     @Bean
     ApplicationRunner baseInitDataApplicationRunner() {
