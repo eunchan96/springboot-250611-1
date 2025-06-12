@@ -34,8 +34,8 @@ public class BaseInitData {
     void work1() {
         if(postService.count() > 0) return; // SELECT COUNT(*) FROM post;
 
-        Post post1 = postService.save(new Post("제목 1", "내용 1")); // INSERT INTO post SET title = '제목 1';
-        Post post2 = postService.save(new Post("제목 2", "내용 2"));
+        Post post1 = postService.write("제목 1", "내용 1"); // INSERT INTO post SET title = '제목 1';
+        Post post2 = postService.write("제목 2", "내용 2");
 
         System.out.println("기본 데이터가 초기화되었습니다.");
     }
@@ -56,5 +56,6 @@ public class BaseInitData {
 
         postService.modify(post1, "제목1 수정", "내용1 수정");
         // UPDATE post SET title = '제목1 수정', content = '내용1 수정', modifiedDate = NOW() WHERE id = 1;
+
     }
 }
