@@ -21,4 +21,9 @@ public class Post {
     private final String title;
     @Column(columnDefinition = "TEXT")
     private final String content;
+
+    public Post() {
+        this.title = "";
+        this.content = "";
+    }
 }
