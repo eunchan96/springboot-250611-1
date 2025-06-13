@@ -1,5 +1,7 @@
 package com.back.global.initData;
 
+import com.back.domain.member.member.entity.Member;
+import com.back.domain.member.member.service.MemberService;
 import com.back.domain.post.post.entity.Post;
 import com.back.domain.post.post.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -20,18 +22,26 @@ public class BaseInitData {
     private BaseInitData self;
 
     private final PostService postService;
+    private final MemberService memberService;
 
     @Bean
     ApplicationRunner baseInitDataApplicationRunner() {
         return args -> {
-            work1(); // self.work1();
-            work2(); // self.work2();
-            self.work3();
+            self.work1();
+            // self.work2();
+            // self.work3();
         };
     }
 
     @Transactional
     void work1() {
+        if(memberService.count() > 0) return; // SELECT COUNT(*) FROM member;
+        Member memverSystem = memberService.join("system", "1234", "시스템");
+        Member memberAdmin = memberService.join("admin", "1234", "관리자");
+        Member memberUser1 = memberService.join("user1", "1234", "유저1");
+        Member memberUser2 = memberService.join("user2", "1234", "유저2");
+        Member memberUser3 = memberService.join("user3", "1234", "유저3");
+
         if(postService.count() > 0) return; // SELECT COUNT(*) FROM post;
 
         Post post1 = postService.write("제목 1", "내용 1"); // INSERT INTO post SET title = '제목 1';
