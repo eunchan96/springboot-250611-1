@@ -3,11 +3,6 @@ spring:
     name: back
   profiles:
     active: dev
-  datasource:
-    url: jdbc:h2:./db_dev;MODE=MySQL
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
   output:  # commuity 버전만
     ansi:
       enabled: always

@@ -44,6 +44,6 @@ public class PostRepositoryTest {
     void t3() {
         long count = postRepository.count();
 
-        assertThat(count).isEqualTo(2); // 초기 데이터가 2개이므로
+        assertThat(count).isEqualTo(4); // 테스트 데이터가 4개가 있어야 함
     }
 }
