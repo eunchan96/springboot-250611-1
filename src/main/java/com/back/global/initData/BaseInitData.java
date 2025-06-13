@@ -56,5 +56,6 @@ public class BaseInitData {
 
         postService.modify(post1, "제목1 수정", "내용1 수정");
         // UPDATE post SET title = '제목1 수정', content = '내용1 수정', modifiedDate = NOW() WHERE id = 1;
+        System.out.println("Post 1: " + post1);
     }
 }
