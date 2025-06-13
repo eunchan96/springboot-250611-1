@@ -6,10 +6,14 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @SpringBootTest
+@Transactional
+@Rollback
 public class PostRepositoryTest {
     @Autowired
     private PostRepository postRepository;
@@ -21,5 +25,25 @@ public class PostRepositoryTest {
 
         assertThat(post1.getTitle()).isEqualTo("제목 2");
         assertThat(post1.getContent()).isEqualTo("내용 2");
+    }
+
+    @Test
+    @DisplayName("글 작성")
+    void t2() {
+        Post post = new Post("제목 new", "내용 new");
+        assertThat(post.getId()).isEqualTo(0); // ID는 아직 생성되지 않음
+        postRepository.save(post);
+
+        assertThat(post.getId()).isGreaterThan(0); // ID가 자동 생성되므로 0보다 커야 함
+        assertThat(post.getTitle()).isEqualTo("제목 new");
+        assertThat(post.getContent()).isEqualTo("내용 new");
+    }
+
+    @Test
+    @DisplayName("글 개수 조회")
+    void t3() {
+        long count = postRepository.count();
+
+        assertThat(count).isEqualTo(2); // 초기 데이터가 2개이므로
     }
 }
