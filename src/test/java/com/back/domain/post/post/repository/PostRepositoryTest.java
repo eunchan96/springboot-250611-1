@@ -1,5 +1,7 @@
 package com.back.domain.post.post.repository;
 
+import com.back.domain.member.member.Repository.MemberRepository;
+import com.back.domain.member.member.entity.Member;
 import com.back.domain.post.post.Repository.PostRepository;
 import com.back.domain.post.post.entity.Post;
 import org.junit.jupiter.api.DisplayName;
@@ -17,6 +19,8 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class PostRepositoryTest {
     @Autowired
     private PostRepository postRepository;
+    @Autowired
+    private MemberRepository memberRepository;
 
     @Test
     @DisplayName("2번 글 조회")
@@ -30,7 +34,8 @@ public class PostRepositoryTest {
     @Test
     @DisplayName("글 작성")
     void t2() {
-        Post post = new Post(1, "제목 new", "내용 new");
+        Member memberUser1 = memberRepository.findById(3).get();
+        Post post = new Post(memberUser1, "제목 new", "내용 new");
         assertThat(post.getId()).isEqualTo(0); // ID는 아직 생성되지 않음
         postRepository.save(post);
 
