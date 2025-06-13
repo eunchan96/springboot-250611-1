@@ -27,27 +27,8 @@ public class PostService {
     }
 
     public void modify(Post post, String title, String content) {
-        /*
-        boolean changed = false;
-
-        if (!post.getTitle().equals(title)) {
-            post.setTitle(title);
-            changed = true;
-        }
-
-        if (!post.getContent().equals(content)) {
-            post.setContent(content);
-            changed = true;
-        }
-
-        if (changed) post.setModifyDate(LocalDateTime.now());
-
-        postRepository.save(post);
-        */
-
         post.setTitle(title);
         post.setContent(content);
-
-        postRepository.save(post);
+        // save() 메서드를 호출하지 않아도, JPA가 엔티티의 상태를 감지하여 자동으로 업데이트한다.
     }
 }
