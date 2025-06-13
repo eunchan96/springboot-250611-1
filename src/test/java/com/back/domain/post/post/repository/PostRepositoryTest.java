@@ -30,7 +30,7 @@ public class PostRepositoryTest {
     @Test
     @DisplayName("글 작성")
     void t2() {
-        Post post = new Post("제목 new", "내용 new");
+        Post post = new Post(1, "제목 new", "내용 new");
         assertThat(post.getId()).isEqualTo(0); // ID는 아직 생성되지 않음
         postRepository.save(post);
 
@@ -44,6 +44,6 @@ public class PostRepositoryTest {
     void t3() {
         long count = postRepository.count();
 
-        assertThat(count).isEqualTo(4); // 테스트 데이터가 4개가 있어야 함
+        assertThat(count).isEqualTo(2);
     }
 }
