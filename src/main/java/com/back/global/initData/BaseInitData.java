@@ -26,7 +26,7 @@ public class BaseInitData {
         return args -> {
             work1(); // self.work1();
             work2(); // self.work2();
-            work3(); // self.work3();
+            self.work3();
         };
     }
 
